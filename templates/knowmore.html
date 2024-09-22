@@ -1,0 +1,448 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farming Insights</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            color: #333;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .navbar a {
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .navbar a.logo {
+            
+            display: block;
+            color: #f2f2f2;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
+            margin-right: 30px;
+            padding: 14px 16px;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .is-hidden {
+            display: none;
+        }
+
+        .is-active {
+            display: block !important;
+        }
+
+        .card {
+            margin-bottom: 2rem;
+            background-color: linen;
+            font-size: larger;
+        }
+
+        .card-content {
+            background-color: rgb(252, 247, 244);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="/home" class="logo">Gist - Text Summarization App</a>
+        <div class="nav-links">
+            <a href="/home" class="tablinks">Home</a>
+            <a href="/predict" class="tablinks">Summary</a>
+            <a href="/knowmore" class="tablinks">Know more</a>
+            <a href="/analyse" class="tablinks">Analyse</a>
+        </div>
+    </div>
+
+    <section class="section">
+
+        <div class="container">
+            <h1 class="title">Farming Insights</h1>
+
+            <div class="card">
+                <header class="card-header p-0" onclick="toggleVisibility('chemicals')">
+                    <p class="card-header-title mb-0">
+                        Chemical ranges for crop yield
+                    </p>
+                    <a href="#" class="card-header-icon" aria-label="more options">
+                        <span class="icon">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </header>
+                <div class="card-content is-hidden" id="chemicals">
+                    <div class="content">
+                        Most crops yield optimally with a chemical application range between 0 and 75.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <header class="card-header p-0" onclick="toggleVisibility('phLevel')">
+                    <p class="card-header-title mb-0">
+                        Optimal pH Levels
+                    </p>
+                    <a href="#" class="card-header-icon" aria-label="more options">
+                        <span class="icon">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </header>
+                <div class="card-content is-hidden" id="phLevel">
+                    <div class="content">
+                        The majority of crops thrive best in soils with a pH level between 6 and 7.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <header class="card-header p-0" onclick="toggleVisibility('temp')">
+                    <p class="card-header-title mb-0">
+                        Temperature and Crop Growth
+                    </p>
+                    <a href="#" class="card-header-icon" aria-label="more options">
+                        <span class="icon">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </header>
+                <div class="card-content is-hidden" id="temp">
+                    <div class="content">
+                        <ul>
+                            <li>Most crops, except for a few, achieve higher yields at temperatures ranging from 20°C to 30°C.</li>
+                            <li>Mangoes require temperatures above 30°C, suitable for summer cultivation.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <header class="card-header p-0" onclick="toggleVisibility('hum')">
+                    <p class="card-header-title mb-0">
+                        Humidity's Impact on Crop Yield
+                    </p>
+                    <a href="#" class="card-header-icon" aria-label="more options">
+                        <span class="icon">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </header>
+                <div class="card-content is-hidden" id="hum">
+                    <div class="content">
+                        A direct correlation exists where an increase in humidity up to 100 enhances crop yield.
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <header class="card-header p-0" onclick="toggleVisibility('spec')">
+                    <p class="card-header-title mb-0">
+                        Specific Crop Requirements
+                    </p>
+                    <a href="#" class="card-header-icon" aria-label="more options">
+                        <span class="icon">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </header>
+                <div class="card-content is-hidden" id="spec">
+                    <div class="content">
+                        Rice necessitates heavy rainfall and high humidity. Coconut requires high humidity levels to
+                        thrive.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <header class="card-header p-0" onclick="toggleVisibility('corr')">
+                    <p class="card-header-title mb-0">
+                        Correlation Between Soil Nutrients
+                    </p>
+                    <a href="#" class="card-header-icon" aria-label="more options">
+                        <span class="icon">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </header>
+                <div class="card-content is-hidden" id="corr">
+                    <div class="content">
+                        Phosphorous and Potassium content in the soil are highly correlated.
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <header class="card-header p-0" onclick="toggleVisibility('nutrient')">
+                    <p class="card-header-title mb-0">
+                        Nutrient Requirements
+                    </p>
+                    <a href="#" class="card-header-icon" aria-label="more options">
+                        <span class="icon">
+                            <i class="fas fa-angle-down" aria-hidden="true"></i>
+                        </span>
+                    </a>
+                </header>
+                <div class="card-content is-hidden" id="nutrient">
+                    <div class="content">
+                        The nitrogen content needed for most crops varies from 0 to 40.
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div style="margin-top: 4rem;">
+            
+            <div class="card">
+                <div class="image-card">
+                    <figure class="image is-4by3 mb-0" style="width: inherit;">
+                        <img src="static/images/stat2.jpg" alt="Crop Image" id="resultImage">
+                    </figure>
+                </div>
+            </div>
+            <div class="card">
+                <div class="image-card">
+                    <figure class="image is-4by3 mb-0" style="width: inherit;">
+                        <img src="static/images/stat1.png" alt="Crop Image" id="resultImage">
+                    </figure>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleVisibility(id) {
+            const element = document.getElementById(id);
+            element.classList.toggle('is-active');
+        }
+    </script>
+
+</body>
+
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Model Comparison: T5, BART, and BERT2BERT</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .navbar a {
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .navbar a.logo {
+
+            display: block;
+            color: #f2f2f2;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
+            margin-right: 30px;
+            padding: 14px 16px;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        .section {
+            padding: 40px 20px;
+        }
+        .model-section {
+            margin-bottom: 50px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            padding: 20px;
+        }
+        .model-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .model-header img {
+            height: auto;
+            margin-right: 20px;
+        }
+        .model-header h2 {
+            margin: 0;
+            color: #495057;
+        }
+        .model-content {
+            margin-top: 20px;
+        }
+        .model-content h3 {
+            margin-top: 0;
+            color: #343a40;
+        }
+        .code-snippet {
+            background-color: #f1f1f1;
+            padding-left: 20px;
+            border-left: 5px solid #007bff;
+            font-family: monospace;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        ul {
+            list-style: disc;
+            margin-left: 20px;
+        }
+        ul li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="/home" class="logo">Gist - Text Summarization Tool</a>
+        <div class="nav-links">
+            <a href="/home" class="tablinks">Home</a>
+            <a href="/predict" class="tablinks">Summary</a>
+            <a href="/knowmore" class="tablinks">Know more</a>
+            <a href="/analyse" class="tablinks">Document</a>
+        </div>
+    </div>
+
+    <section class="section">
+        <div class="container">
+            <div class="model-section">
+                <div class="model-header">
+                    <h2><strong>Google T5 (Text-to-Text Transfer Transformer)</strong></h2>
+                </div>
+                <div class="model-content">
+                    <img src="static/images/image.png" alt="T5 Execution">
+                    <h3><strong>Architecture:</strong></h3>
+                    <p>T5 treats every NLP problem as a text-to-text problem. The model has an encoder-decoder architecture similar to that used in sequence-to-sequence models for tasks like translation. Both encoder and decoder are transformers.</p>
+                    <ul>
+                        <li><strong>Flexibility:</strong> T5 can handle a wide range of tasks by converting them into a text-to-text format.</li>
+                        <li><strong>Performance:</strong> State-of-the-art results on many NLP benchmarks.</li>
+                    </ul>
+                    <h3>Example:</h3>
+                    <div class="code-snippet">
+                        <code>
+from transformers import T5Tokenizer, T5ForConditionalGeneration<br>
+model = T5ForConditionalGeneration.from_pretrained('t5-base')<br>
+tokenizer = T5Tokenizer.from_pretrained('t5-base')<br>
+input_text = "summarize: The quick brown fox jumps over the lazy dog."<br>
+input_ids = tokenizer.encode(input_text, return_tensors='pt')<br>
+output_ids = model.generate(input_ids)<br>
+summary = tokenizer.decode(output_ids[0])<br>
+print(summary)
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="model-section">
+                <div class="model-header">
+                    <h2><strong> BART (Bidirectional and Auto-Regressive Transformers)</strong></h2>
+                </div>
+                <div class="model-content">
+                    <img src="static/images/image1.png" alt="BART Execution">
+                    <h3><strong>Architecture:</strong></h3>
+                    <p>BART combines the bidirectional context representation of BERT with the autoregressive nature of GPT. It uses a standard encoder-decoder architecture where the encoder is similar to BERT and the decoder is similar to GPT.</p>
+                    <ul>
+                        <li><strong>Robust:</strong> BART is particularly strong in tasks requiring sequence generation and text reconstruction.</li>
+                        <li><strong>Performance:</strong> Achieves strong results on a variety of sequence-to-sequence tasks such as summarization and translation.</li>
+                    </ul>
+                    <h3>Example:</h3>
+                    <div class="code-snippet">
+                        <code>
+from transformers import BartTokenizer, BartForConditionalGeneration<br>
+model = BartForConditionalGeneration.from_pretrained('facebook/bart-base')<br>
+tokenizer = BartTokenizer.from_pretrained('facebook/bart-base')<br>
+input_text = "The quick brown fox jumps over the lazy dog."<br>
+input_ids = tokenizer.encode(input_text, return_tensors='pt')<br>
+output_ids = model.generate(input_ids)<br>
+summary = tokenizer.decode(output_ids[0])<br>
+print(summary)
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="model-section">
+                <div class="model-header">
+                    <h2><strong>BERT2BERT</strong></h2>
+                </div>
+                <div class="model-content">
+                    <img src="static/images/image2.png" alt="BERT2BERT Execution">
+                    <h3><strong>Architecture:</strong></h3>
+                    <p>BERT2BERT uses two BERT models: one as an encoder and the other as a decoder. This configuration leverages BERT's bidirectional context understanding to both encode input text and decode outputs.</p>
+                    <ul>
+                        <li><strong>Adaptability:</strong> Utilizes BERT’s strong context understanding capabilities for both encoding and decoding, making it useful for tasks like text generation and summarization.</li>
+                        <li><strong>Performance:</strong> Benefits from BERT’s pre-training on large text corpora, leading to high-quality contextual embeddings.</li>
+                    </ul>
+                    <h3>Example:</h3>
+                    <div class="code-snippet">
+                        <code>
+from transformers import EncoderDecoderModel, BertTokenizer<br>
+model = EncoderDecoderModel.from_encoder_decoder_pretrained("bert-base-uncased", "bert-base-uncased")<br>
+tokenizer = BertTokenizer.from_pretrained("bert-base-uncased")<br>
+input_text = "The quick brown fox jumps over the lazy dog."<br>
+input_ids = tokenizer.encode(input_text, return_tensors='pt')<br>
+output_ids = model.generate(input_ids)<br>
+summary = tokenizer.decode(output_ids[0])<br>
+print(summary)
+                        </code>
+                    </div>
+                </div>
+            </div>
+
+            <div class="model-section">
+                <h2>Comparison</h2>
+                <ul>
+                    <li><strong>T5:</strong> Versatile and treats all NLP tasks as text-to-text, which simplifies model usage across different tasks.</li>
+                    <li><strong>BART:</strong> Designed for tasks requiring robust sequence generation and has a strong focus on text reconstruction.</li>
+                    <li><strong>BERT2BERT:</strong> Leverages BERT's bidirectional nature in both encoding and decoding stages, making it effective for tasks requiring detailed context understanding.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+</body>
+</html>

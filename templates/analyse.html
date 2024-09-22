@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gist</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            color: #333;
+        }
+        .navbar {
+            background-color: #333;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+
+        .navbar a {
+            color: #f2f2f2;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .navbar a.logo {
+
+            display: block;
+            color: #f2f2f2;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 20px;
+            margin-right: 30px;
+            padding: 14px 16px;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .card {
+            margin-bottom: 2rem;
+            font-size: larger;
+        }
+        .container {
+            font-size: medium;
+        }
+        
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .column {
+            width: 45%;
+        }
+        textarea {
+            width: 100%;
+            height: 600px;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+        .button-container {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #467048;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #9fcfa2;
+        }
+
+        #summary1, #summary2, #summary3 {
+            border: 1px solid #ccc;
+            padding: 10px;
+            height: 200px;
+            overflow-y: auto;
+            border-radius: 5px;
+            margin-bottom: 20px;
+            background-color: #f9f9f9;
+        }
+
+        h2, h3, h4 {
+            color: #3a403b;
+        }
+
+        .section {
+            padding: 20px;
+        }
+
+        /* Loading overlay styles */
+        #loading-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .spinner {
+            border: 16px solid #f3f3f3;
+            border-top: 16px solid #5f6d5f;
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            animation: spin 2s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="/home" class="logo">Gist - Text Summarization Tool</a>
+        <div class="nav-links">
+            <a href="/home" class="tablinks">Home</a>
+            <a href="/predict" class="tablinks">Summary</a>
+            <a href="/knowmore" class="tablinks">Know more</a>
+            <a href="/analyse" class="tablinks">Document</a>
+        </div>
+    </div>
+    
+    <section class="section">
+        <h1><strong>[Future Enhancement]</strong></h1>
+        <div class="container">
+            <div class="column">
+                <h2>Input Text</h2>
+                
+                <div class="button-container">
+                    <input type="file" id="fileInput" onchange="loadFileContent(event)">
+                </div>
+                <div class="button-container">
+                    <button onclick="summarizeText()">Summarize</button>
+                </div>
+            </div>
+            <div class="column">
+                <div class="mb-2">
+                    <h4>Predicted Summary</h4>
+                    <div id="summary1"></div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+</body>
+
+</html>
